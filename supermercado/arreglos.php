@@ -38,11 +38,8 @@ foreach ($numeros as $key => $valor) {
     echo('<br>');
    }    
 }
-
 foreach ($productosAsociados as $key => $valor){
     echo($valor);
     echo('<br>');
-
 }
-
 ?>
