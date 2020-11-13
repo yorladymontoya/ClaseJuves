@@ -2,26 +2,31 @@
 
 include("BaseDatos.php");
 
-
-if (isset($_POST['botonEnvio']))
+if(isset($_POST["botonEnvio"]))
 {
-    //Recibo los datos del formulario
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $descripcion=$_POST['descripcion'];
-    $genero=$_POST['genero'];
+
+//Recibo los datos del formulario
+$nombre=$_POST['nombre'];
+$apellido=$_POST['apellido'];
+$descripcion=$_POST['descripcion'];
+$genero=$_POST['genero'];
+$foto=$_POST['foto'];
 
 
-// copio u objeto  de la clase BD - instancio la clase
-    $transaccion= new BaseDatos();
-// Crear la consulta
-    $consultaSQL="INSERT INTO usuarios(nombre, apellido, descripcion, genero) VALUES ('$nombre','$apellido', '$descripcion', '$genero')";
-// Llamo al metodo de la clase BD agregarDatos()
-    $transaccion->agregarDatos($consultaSQL);
+//copia u objeto de la clase BD
+$transaccion= new BaseDatos();
+$transaccion->conectarBD();
 
+//crear consulta
+
+$consultasSQL="INSERT INTO usuarios(nombre,apellido,descripcion,genero,foto) VALUES ('$nombre','$apellido','$descripcion','$genero','$foto')";
+
+//llamo al metodo de la clase DB agregarDatos
+$transaccion->agregarDatos($consultasSQL);
+
+//REdireccionar al formulario
+
+header("Location:formulario.php");
 
 }
-
-
-
 ?>

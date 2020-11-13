@@ -42,7 +42,7 @@
             $insertarDatos=$conexionBD->prepare($consultarSQL);
 
             //Ejecutar la consulta
-            $insertarDatos->execute();
+          
             $resultado= $insertarDatos->execute();
 
             //Verifico el resultado
@@ -51,10 +51,69 @@
             }else{
                 echo('Error');
             }
+        }
+
+        public function consultarDatos($consultarSQL)
+        {
+            //Estableccer una conexion
+            $conexionBD= $this->conectarBD();
+
+             //Preparar la consulta
+             $consultarDatos=$conexionBD->prepare($consultarSQL);
+
+            //Establecer el metodo de consulta
+            $consultarDatos->setFetchMode(PDO::FETCH_ASSOC);
+
+            //Ejecutar la operacion en la BD
+            $consultarDatos->execute();
+            return($consultarDatos->fetchAll());
+
+        }
+        public function eliminarDatos($consultarSQL)
+        {
+            //Estableccer una conexion
+            $conexionBD= $this->conectarBD();
+
+            //Preparar la consulta
+            $eliminarDatos=$conexionBD->prepare($consultarSQL);
+
+            //Ejecutar la consulta
+            $resultado=$eliminarDatos->execute();
+
+            //verificar el resultado
+
+        if ($resultado){
+            echo("usuario eliminado");
+        }
+        else{
+            echo("error");
+        }  
+
+        }
+        public function editarDatos($consultarSQL){
+             //Estableccer una conexion
+             $conexionBD= $this->conectarBD();
+
+             //Preparar la consulta
+             $editarDatos=$conexionBD->prepare($consultarSQL);
+ 
+             //Ejecutar la consulta
+             $resultado=$editarDatos->execute();
+ 
+             //verificar el resultado
+ 
+         if ($resultado){
+             echo("usuario editado");
+         }
+         else{
+             echo("error al editar usuario");
+         }  
+ 
+
+
 
 
         }
-
 
 }
 
